@@ -1,0 +1,5 @@
+defaultProject: map-project-317703
+defaultLocation: US
+defaultDataset: EDA
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.0

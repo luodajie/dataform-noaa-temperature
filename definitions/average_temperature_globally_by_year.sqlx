@@ -1,0 +1,10 @@
+config { 
+  type: "table" 
+}
+
+SELECT 
+  avg(temp) as mean_temp,
+  year 
+FROM `bigquery-public-data.noaa_gsod.gsod*` 
+GROUP BY year 
+ORDER BY year
