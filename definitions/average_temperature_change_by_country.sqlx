@@ -7,7 +7,7 @@ WITH temperature_data AS(
     CAST(year AS INT) AS year_int,
     AVG(temp) AS mean_temp,
   FROM `bigquery-public-data.noaa_gsod.gsod*` AS gsod
-  JOIN `bigquery-public-data.noaa_gsod.stations` AS stations 
+  JOIN ${ref("stations")} AS stations 
   ON stations.usaf = gsod.stn AND stations.wban = gsod.wban
   WHERE country IS NOT NULL
   GROUP BY year, country
@@ -29,6 +29,6 @@ SELECT
         WHERE year_int>=1973
         GROUP BY country_code
     ) USING (country_code)
-    LEFT JOIN `map-project-317703.EDA.iso_country_codes` AS iso 
+    LEFT JOIN `${constants.PROJECT_ID}.EDA.iso_country_codes` AS iso 
     ON country_code=iso.`Alpha-2 code`
     ORDER BY year_int, country_code
